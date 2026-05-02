@@ -23,7 +23,7 @@
       --green: #80f0b0;
       --red: #f08080;
       --text: #ece8e0;
-      --muted: rgba(236,232,224,0.4);
+      --muted: rgba(236,232,224,0.58);
       --muted2: rgba(236,232,224,0.2);
       --st: env(safe-area-inset-top);
       --sb: env(safe-area-inset-bottom);
@@ -60,7 +60,7 @@
       font-size: 22px; font-weight: 700; letter-spacing: -0.5px;
       line-height: 1;
     }
-    .wordmark em { color: var(--gold); font-style: italic; }
+    .wordmark em { color: #dfa42d; font-style: normal; }
     .month-pill {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
@@ -326,6 +326,7 @@
       font-family: 'IBM Plex Mono', monospace;
       font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
       color: var(--green); margin-bottom: 14px;
+      text-align: center;
     }
     .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .proj-item { text-align: center; }
@@ -504,6 +505,30 @@
     .step-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
     .step-text strong { color: var(--text); }
 
+    /* ── HERO & GAUGES CONTAINER ── */
+    .hero-gauges-wrapper {
+      background: var(--s1);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .hero-gauges-wrapper .hero {
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+    .hero-gauges-wrapper .hero::before {
+      display: none;
+    }
+    .gauges-inline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .gauges-inline .gauge-card {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 12px 8px;
+    }
+
     /* ── ANIMATIONS ── */
     @keyframes fadeUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
     .page.active > *{animation:fadeUp .4s ease both;}
@@ -524,70 +549,55 @@
   <div class="page active" id="page-dashboard">
 
     <div class="topbar">
-      <div class="wordmark">Mo<em>Mo</em><br>Budget</div>
+      <div class="wordmark"><em>E-</em> Budget</div>
       <div class="month-pill" id="monthPill"></div>
     </div>
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="hero-label">Entrée</div>
-      <div class="hero-amount" id="heroAmount">0</div>
-      <div class="hero-currency" style="color: white;">FCFA</div>
-      <div class="hero-divider"></div>
-      <div class="hero-splits">
-        <div class="hero-split">
-          <span class="hs-amt" id="hsEssential" style="color:var(--gold)">—</span>
+    <!-- HERO & GAUGES -->
+    <div class="hero-gauges-wrapper">
+      <div class="hero">
+        <div class="hero-label">Entrée</div>
+        <div class="hero-amount" id="heroAmount">0</div>
+        <div class="hero-currency" style="color: white;">FCFA</div>
+        <div class="hero-divider"></div>
+      </div>
+      <div class="gauges-inline">
+        <div class="gauge-card">
+          <div class="g-ring">
+            <svg class="g-svg" viewBox="0 0 68 68">
+              <circle class="g-track" cx="34" cy="34" r="26" stroke="rgba(240,208,128,.1)"/>
+              <circle class="g-fill" id="gE" cx="34" cy="34" r="26"
+                stroke="var(--gold)" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
+            </svg>
+            <div class="g-label" id="gLabelE" style="color:var(--gold)">100%</div>
+          </div>
+          <span class="hs-amt" id="gvE" style="color:var(--gold)">—</span>
           <span class="hs-lbl">Essentiel</span>
         </div>
-        <div class="hero-split">
-          <span class="hs-amt" id="hsPleasure" style="color:var(--blue)">—</span>
+        <div class="gauge-card">
+          <div class="g-ring">
+            <svg class="g-svg" viewBox="0 0 68 68">
+              <circle class="g-track" cx="34" cy="34" r="26" stroke="rgba(128,184,240,.1)"/>
+              <circle class="g-fill" id="gP" cx="34" cy="34" r="26"
+                stroke="var(--blue)" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
+            </svg>
+            <div class="g-label" id="gLabelP" style="color:var(--blue)">100%</div>
+          </div>
+          <span class="hs-amt" id="gvP" style="color:var(--blue)">—</span>
           <span class="hs-lbl">Plaisir</span>
         </div>
-        <div class="hero-split">
-          <span class="hs-amt" id="hsSavings" style="color:var(--green)">—</span>
+        <div class="gauge-card">
+          <div class="g-ring">
+            <svg class="g-svg" viewBox="0 0 68 68">
+              <circle class="g-track" cx="34" cy="34" r="26" stroke="rgba(128,240,176,.1)"/>
+              <circle class="g-fill" id="gS" cx="34" cy="34" r="26"
+                stroke="var(--green)" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
+            </svg>
+            <div class="g-label" id="gLabelS" style="color:var(--green)">100%</div>
+          </div>
+          <span class="hs-amt" id="gvS" style="color:var(--green)">—</span>
           <span class="hs-lbl">Épargne</span>
         </div>
-      </div>
-    </div>
-
-    <!-- GAUGES -->
-    <div class="section-label">Répartition 40 · 20 · 40</div>
-    <div class="gauges">
-      <div class="gauge-card">
-        <div class="g-ring">
-          <svg class="g-svg" viewBox="0 0 68 68">
-            <circle class="g-track" cx="34" cy="34" r="26" stroke="rgba(240,208,128,.1)"/>
-            <circle class="g-fill" id="gE" cx="34" cy="34" r="26"
-              stroke="var(--gold)" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
-          </svg>
-          <div class="g-label" id="gLabelE" style="color:var(--gold)">100%</div>
-        </div>
-        <div class="g-name" style="color:var(--gold)">Besoins</div>
-        <div class="g-val" id="gvE" style="color:var(--gold)">—</div>
-      </div>
-      <div class="gauge-card">
-        <div class="g-ring">
-          <svg class="g-svg" viewBox="0 0 68 68">
-            <circle class="g-track" cx="34" cy="34" r="26" stroke="rgba(128,184,240,.1)"/>
-            <circle class="g-fill" id="gP" cx="34" cy="34" r="26"
-              stroke="var(--blue)" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
-          </svg>
-          <div class="g-label" id="gLabelP" style="color:var(--blue)">100%</div>
-        </div>
-        <div class="g-name" style="color:var(--blue)">Plaisir</div>
-        <div class="g-val" id="gvP" style="color:var(--blue)">—</div>
-      </div>
-      <div class="gauge-card">
-        <div class="g-ring">
-          <svg class="g-svg" viewBox="0 0 68 68">
-            <circle class="g-track" cx="34" cy="34" r="26" stroke="rgba(128,240,176,.1)"/>
-            <circle class="g-fill" id="gS" cx="34" cy="34" r="26"
-              stroke="var(--green)" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
-          </svg>
-          <div class="g-label" id="gLabelS" style="color:var(--green)">100%</div>
-        </div>
-        <div class="g-name" style="color:var(--green)">Épargne</div>
-        <div class="g-val" id="gvS" style="color:var(--green)">—</div>
       </div>
     </div>
 
@@ -600,15 +610,15 @@
           <span class="dbar-badge bg-essential">40 %</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl" style="color: white;">Alloué</span>
+          <span class="dbar-rl" style="color: white;;">Alloué</span>
           <span class="dbar-rv" id="dbEAmt" style="color: white;">— FCFA</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl" style="color: white;">Consommé</span>
+          <span class="dbar-rl" style="color: white;;">Consommé</span>
           <span class="dbar-rv" id="dbESpent" style="color: white;">— FCFA</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl">Solde restant</span>
+          <span class="dbar-rl" style="color: white;;">Solde restant</span>
           <span class="dbar-rv" id="restE" style="color:var(--gold)">— FCFA</span>
         </div>
         <div class="progress-wrap">
@@ -630,7 +640,7 @@
           <span class="dbar-rv" id="dbPSpent" style="color: white;">— FCFA</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl">Solde restant</span>
+          <span class="dbar-rl" style="color: white;;">Solde restant</span>
           <span class="dbar-rv" id="restP" style="color:var(--blue)">— FCFA</span>
         </div>
         <div class="progress-wrap">
@@ -644,15 +654,15 @@
           <span class="dbar-badge bg-savings">40 %</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl">Total épargne</span>
+          <span class="dbar-rl" style="color: white;;">Total épargne</span>
           <span class="dbar-rv" id="dbSAmt" style="color:var(--green)">— FCFA</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl">Épargne pure (50%)</span>
+          <span class="dbar-rl" style="color: white;;">Épargne pure (50%)</span>
           <span class="dbar-rv" id="dbSEpargne" style="color:var(--green)">— FCFA</span>
         </div>
         <div class="dbar-row">
-          <span class="dbar-rl">Investissement (50%)</span>
+          <span class="dbar-rl" style="color: white;;">Investissement (50%)</span>
           <span class="dbar-rv" id="dbSInvest" style="color:var(--green)">— FCFA</span>
         </div>
         <div class="progress-wrap">
@@ -663,7 +673,7 @@
 
     <!-- PROJECTION -->
     <div class="proj-card">
-      <div class="proj-title">📈 Projection épargne cumulée</div>
+      <div class="proj-title" >Projection épargne cumulée</div><br>
       <div class="proj-grid">
         <div class="proj-item">
           <span class="proj-val" id="proj3">—</span>
@@ -1058,14 +1068,11 @@ function render() {
 
   // ── Hero ──
   document.getElementById('heroAmount').textContent = fmt(income) === '—' ? '0' : fmt(income);
-  document.getElementById('hsEssential').textContent = fmt(essential);
-  document.getElementById('hsPleasure').textContent  = fmt(pleasure);
-  document.getElementById('hsSavings').textContent   = fmt(savings);
 
   // ── Valeurs des jauges (montant restant) ──
-  document.getElementById('gvE').textContent = fmtF(Math.max(0, essential - spE));
-  document.getElementById('gvP').textContent = fmtF(Math.max(0, pleasure - spP));
-  document.getElementById('gvS').textContent = fmtF(Math.max(0, savings - SUsed));
+  document.getElementById('gvE').textContent = fmt(Math.max(0, essential - spE));
+  document.getElementById('gvP').textContent = fmt(Math.max(0, pleasure - spP));
+  document.getElementById('gvS').textContent = fmt(Math.max(0, savings - SUsed));
 
   // ── Detail bars ──
   document.getElementById('dbEAmt').textContent = fmtF(essential);
