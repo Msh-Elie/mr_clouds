@@ -1,4 +1,7 @@
-<!doctype html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+<!doctype html><html><head><meta charset="utf8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
 /* ── ANALYSES : hiérarchie, confort de lecture et densité maîtrisée ── */
 #page-chart .page-heading{align-items:center;margin-bottom:20px}
 #page-chart .page-title{font-size:30px;letter-spacing:-1px}
@@ -97,7 +100,7 @@
   .analytics-chart-card .chart-canvas-wrap{height:255px}
 }
 
-</style><script type='text/javascript' nonce='Sawp2YhjFnkOJwtArGFqvw==' src='https://746d7d27-cbfb-483a-88b8-55383bfdefaa.frame.claudeusercontent.com/FHTCbpbEaF5c-E3sjijveV5tqNFOwnGaM1qLuYgrMQKZ6MPf2XGRJxHSALrzSAjLwg9IGiVkIJFtejg1W201mouoUFF_65uDHAOmYEnhM1IkUThStO0dLYuEd9nwTXW6_6HfU9RFv5THqttoP0B-a9_KwEz9XUC2dXr56Scvd4iIE_R6plOzMjiSB7OibW3RflPfiq8H1zoXlhxmBhQ64MxASKMCM8dtrjNcb0XLnQJUgG2pgtGjNCIyq1uc6avllUARVROhD6eP06IN6gVz8dIS21ZLUflzDgo6kNj5z6Xhd6r07eYX_RKxXItdA2DyqsA6WMk-pxz70ciXLOv5wCnO-1Mrx7bPbpxB-6IhLdh0Od-lowIUsCzXsLjocYM7TFwUfUTf_f6M08m2C7Of0aLcb72tmNr0EKMV0I4GSpZ-1GVOUdOuQAQBbzuWjC5fmPATYY6Jjx90xADsXMUJZkqO7HWzhRDasvak7lIvXmVPr9KLuvj8HBwfogmB_q5ge90_07gmnPkSEmUscdzJKv67OOCP90Q9wtFoRS6CPZ9cujtzsT6SUF_xMfg8lVzDsclLpf3IRA6UemaAQFiNwLMK66rIop61SVGl1quQQ2fBc41wNIvIIfWLmKHcUhBPiklTr-HwrIG7QrtITSCOFi754g88biVnh-SWu4OF0k868MB90h3WU4WGJ4NzoC1A_eI9z3g_7JP0Vw7jMhIKOg'></script></head><body>
+</style></head><body>
 <title>E-Budget</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#F4F6F9">
@@ -486,10 +489,8 @@ button:disabled{cursor:not-allowed;opacity:.5}
         <div class="page-heading">
           <div class="heading-left">
             <div class="page-eyebrow">TABLEAU DE BORD</div>
-            
           </div>
           <div class="heading-right">
-            <!-- Le mois et le bouton sont alignés à droite, le bouton en dernier -->
             <div class="month-pill" id="monthPill"></div>
             <button class="btn-new-entry" onclick="openAddEntryModal()" aria-label="Nouvelle entrée d&#39;argent">
               <svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
@@ -981,7 +982,6 @@ function refreshModal(){
       const contribution = (e.amount || 0) * pct;
       const iconBg = SOURCE_COLORS[e.source] || SOURCE_COLORS.Autre;
       const title = (e.note && e.note.trim()) || (e.type + ' · ' + e.source);
-      // Meta : date · type d'entrée (Reçu / Dépôt / Virement / Remboursement)
       entriesHtml += `
         <div class="modal-item">
           <div class="modal-item-icon" style="background:${iconBg};color:${color};">${svgFor('income', e.source)}</div>
